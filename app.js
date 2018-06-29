@@ -4,6 +4,7 @@ import WebRoutes from './routes/web'
 import session from 'express-session'
 
 require('dotenv').config()
+let db = require('./config/database')
 
 // App Initialization
 const app = express()
@@ -26,4 +27,13 @@ app.use(session({
         saveUninitialized: true
 }));
 
-app.listen(process.env.APP_PORT, () => console.log(process.env.APP_ENV + ' server is running'))
+app.locals.title = process.env.APP_NAME
+app.locals.csrf_token = ''
+
+db.connect(process.env.DB_HOST, function(err) {
+    if (err) {
+        process.exit(1)
+    } else {
+        app.listen(process.env.APP_PORT, () => console.log(process.env.APP_ENV + ' server is running'))
+    }
+})

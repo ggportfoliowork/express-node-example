@@ -1,0 +1,5 @@
+{
+  "events": {
+    "restart": "osascript -e 'display notification \"Build Suceeded\" with title \"NodeProject\"'"
+  }
+}
