@@ -1,3 +1,14 @@
-console.log("THE TEST CHESTER MIXER LICKER")
-console.log("TESTICLE")
-console.log("CHESTICLE")
+// Globals
+window._ = require('lodash')
+window.moment = require('moment')
+window.$http = require('./lib/HttpClient')
+
+// React Scaffold
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './scaffold/App'
+
+ReactDOM.render(
+    <App />,
+    document.getElementById('app')
+);

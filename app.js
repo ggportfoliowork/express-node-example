@@ -17,6 +17,9 @@ app.use('/api', ApiRoutes)
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/resources/views');
 
+// App Distribution
+app.use("/dist", express.static(__dirname + '/dist'));
+
 // Session Initialization
 app.use(session({
         secret: process.env.APP_KEY,
@@ -27,8 +30,9 @@ app.use(session({
         saveUninitialized: true
 }));
 
-app.locals.title = process.env.APP_NAME
+// App Locals
 app.locals.csrf_token = ''
+app.locals.title = process.env.APP_NAME
 
 db.connect(process.env.DB_HOST, function(err) {
     if (err) {
