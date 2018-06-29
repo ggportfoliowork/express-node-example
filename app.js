@@ -13,7 +13,7 @@ const app = express()
 app.use('/', WebRoutes)
 app.use('/api', ApiRoutes)
 
-// View setup
+// View setup ReactJS
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/resources/views');
 

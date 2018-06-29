@@ -1,2 +1,1 @@
-import HomeView from 'views/HomeView'
-
+console.log("THE TEST CHESTER")
