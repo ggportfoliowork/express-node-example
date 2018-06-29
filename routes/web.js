@@ -1,13 +1,14 @@
-var express = require('express')
-var router = express.Router()
+import express from 'express'
 
-// define the home page route
-router.get('/', function (req, res) {
-    res.send('Home page')
-})
-// define the about route
-router.get('/about', function (req, res) {
-    res.send('About birds')
-})
+import HomeController from '../http/controllers/web/HomeController'
+import AboutController from '../http/controllers/web/AboutController'
+
+let router = express.Router()
+
+/**
+ * Routes
+ */
+router.get('/', HomeController.index)
+router.get('/about', AboutController.index)
 
 module.exports = router
