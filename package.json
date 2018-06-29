@@ -38,7 +38,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "babel-node app.js --presets es2015,stage-2",
-    "client": "webpack --watch & webpack-dev-server --inline --progress --colors --hot",
+    "client": "webpack --watch & webpack-dev-server --port 3000 --inline --progress --colors --hot",
     "dev": "concurrently \"npm start\" \"npm run client\"",
     "watch": "./node_modules/nodemon/bin/nodemon.js --config nodemon.json --exec npm start"
   },
