@@ -1,7 +1,7 @@
 import UserModel from '../../../models/UserModel'
 
 exports.index = function(req, res) {
-    user(function (err, data) {
+    getUsers(function (err, data) {
         if (!err && data) {
             res.render('home', {
                 users: data
@@ -12,15 +12,11 @@ exports.index = function(req, res) {
     });
 };
 
-const user = function(cb) {
+const getUsers = function(cb) {
     let users = []
-    let err = null
-    UserModel.findOne({ name: 'jethro' }, function
-        (err, user) {
-            if(err)
-                console.error(err)
-            else
-                console.log(user)
+    let err = false
+    UserModel.find(function
+        (err, users) {
+            cb(err, users);
     });
-    cb(err, users);
 }

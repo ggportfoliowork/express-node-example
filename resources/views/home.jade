@@ -3,4 +3,5 @@ html
     head
         title Users Index
     body
-        h1 TEST
+        each item in users
+            li= item.id + ' ' + item.username
