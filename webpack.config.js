@@ -1,4 +1,5 @@
 module.exports = {
+    mode: 'development',
     entry: "./resources/js/app.js",
     output: {
         filename: "./js/bundle.js"
@@ -13,5 +14,9 @@ module.exports = {
                 }
             }
         ]
+    },
+    devServer: {
+        historyApiFallback: true,
+        port: 3000
     }
-};
+}
