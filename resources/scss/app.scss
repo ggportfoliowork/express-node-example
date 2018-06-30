@@ -1,5 +1,56 @@
-
+@import "vars";
+@import "fontawesome";
+@import url('https://fonts.googleapis.com/css?family=Oxygen:300,400,700');
 
 body {
-  background-color: #efefef;
+  background-color: $body-bg;
+  font-family: 'Oxygen', 'sans-serif' !important;
+}
+
+/**
+body:after{
+  content: "beta";
+  position: fixed;
+  width: 80px;
+  height: 25px;
+  background: #bf5329;
+  top: 7px;
+  left: -20px;
+  text-align: center;
+  font-size: 13px;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  z-index: 50000;
+  font-weight: bold;
+  color: #fff;
+  line-height: 27px;
+  -ms-transform:rotate(-45deg);
+  -webkit-transform:rotate(-45deg);
+  transform:rotate(-45deg);
+}
+**/
+
+.header-logo {
+  padding: 0px 0px 0px 10px;
+}
+
+.sidebar-icon {
+  padding: 0px 10px 0px 0px;
+  width: 24px;
+}
+
+.grommetux-header__container--fill .grommetux-header {
+  background: $brand-primary !important;
+  color: #FFF !important;
+}
+
+.grommetux-background-color-index-neutral-1, .grommetux-background-color-index-neutral-5 {
+  background: rgba(88,88,88, .7) !important;
+  color: #FFF !important;
+}
+
+.grommetux-control-icon {
+  fill: #FFF !important;
+  color: #FFF !important;
+  stroke: #FFF !important;
 }

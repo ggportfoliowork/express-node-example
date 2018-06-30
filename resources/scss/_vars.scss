@@ -1,0 +1,26 @@
+// Body
+$body-bg: #f5f8fa;
+
+// Borders
+$laravel-border-color: darken($body-bg, 10%);
+$list-group-border: $laravel-border-color;
+$navbar-default-border: $laravel-border-color;
+$panel-default-border: $laravel-border-color;
+$panel-inner-border: $laravel-border-color;
+
+$brand-primary: #7B287D;
+$primary-color: #7B287D;
+$brand-primary-light: lighten($brand-primary, 35%);
+$brand-primary-dark: darken($brand-primary, 25%);
+$brand-info: #7067CF;
+$brand-info-light: lighten($brand-info, 25%);
+$brand-info-dark: darken($brand-info, 25%);
+$brand-success: #CBF3D2;
+$brand-success-light: lighten($brand-success, 25%);
+$brand-success-dark: darken($brand-success, 25%);
+$brand-warning: #cbb956;
+$brand-warning-light: lighten($brand-warning, 25%);
+$brand-warning-dark: darken($brand-warning, 25%);
+$brand-danger: #bf5329;
+$brand-danger-light: lighten($brand-danger, 25%);
+$brand-danger-dark: darken($brand-danger, 25%);
