@@ -7,7 +7,6 @@ import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import UserModel from './models/UserModel'
 
-
 // Auth Config
 const LocalStrategy = require('passport-local').Strategy;
 

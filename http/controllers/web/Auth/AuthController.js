@@ -8,7 +8,7 @@ import UserModel from '../../../../models/UserModel'
  */
 exports.showRegistrationForm = function(req, res) {
     res.render('auth/sign-up', {title: 'Sign Up'})
-};
+}
 
 /**
  * Show the login form
