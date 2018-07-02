@@ -1,21 +1,46 @@
 import express from 'express'
+import passport from "passport"
 
+/**
+ * Controllers
+ */
 import HomeController from '../http/controllers/web/HomeController'
-import AboutController from '../http/controllers/web/AboutController'
-import AuthController from '../http/controllers/web/auth/AuthController'
-import ContactController from '../http/controllers/web/ContactController'
+import AuthController from '../http/controllers/web/Auth/AuthController'
+
+/**
+ * Middlewares
+ */
+import AuthMiddleware from '../http/middleware/AuthMiddleware'
+import CsrfMiddleware from '../http/middleware/CsrfMiddleware'
 
 let router = express.Router()
 
 /**
+ * Apply CSRF Middleware to all web routes
+ */
+router.all('*', CsrfMiddleware)
+
+/**
  * Routes
  */
-router.get('/', HomeController.index)
-router.get('/about', AboutController.index)
+router.get('/', AuthMiddleware, HomeController.index)
 
-router.get('/authenticate', AuthController.showLoginForm)
-router.post('/authenticate', AuthController.doLogin)
+/**
+ * Registration
+ */
+router.post('/register', AuthController.storeRegistration)
+router.get('/register', AuthController.showRegistrationForm)
 
-router.get('/contact', ContactController.index)
+/**
+ * Authentication
+ */
+
+router.post('/logout', AuthController.logout)
+router.get('/login', AuthController.showLoginForm)
+router.post('/login', passport.authenticate('local', {
+    successRedirect : '/',
+    failureRedirect : '/register',
+    failureFlash : true
+}))
 
 module.exports = router

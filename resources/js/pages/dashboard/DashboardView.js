@@ -50,7 +50,6 @@ class DashboardView extends React.Component {
                         Box 6
                     </Box>
                 </Columns>
-
             </Section>
         );
     }

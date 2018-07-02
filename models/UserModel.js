@@ -1,33 +1,21 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    bcrypt = require('bcrypt'),
-    SALT_WORK_FACTOR = 10;
+import mongoose from 'mongoose'
+import passportLocalMongoose from 'passport-local-mongoose'
 
-var UserSchema = new Schema({
-    username: { type: String, required: true, index: { unique: true } },
-    password: { type: String, required: true }
-});
+const Schema = mongoose.Schema
 
-UserSchema.pre('save', function(next) {
-    var user = this;
-    if (!user.isModified('password')) return next();
-    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-        if (err) return next(err);
-        bcrypt.hash(user.password, salt, function(err, hash) {
-            if (err) return next(err);
-            user.password = hash;
-            next();
-        });
-    });
-});
+let UserModelSchema = new Schema({
+    username: String,
+    password: String,
+    has_viewed_tutorial: Number,
+    created_at: Date,
+    updated_at: Date,
+    deleted_at: Date,
+    created_by: Number,
+    updated_by: Number,
+    deleted_by: Date
+}, { collection: 'users' })
 
-UserSchema.methods.comparePassword = function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-        if (err) return cb(err);
-        cb(null, isMatch);
-    });
-};
+UserModelSchema.plugin(passportLocalMongoose)
 
-const UserModel = mongoose.model('users', UserSchema);
-
+const UserModel = mongoose.model('UserModel', UserModelSchema)
 export default UserModel
