@@ -29,7 +29,6 @@ app.use("/dist", express.static(__dirname + '/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(csrf({ cookie: true }))
 app.use(require('express-session')({
     secret: process.env.APP_KEY,
     resave: false,
@@ -44,6 +43,9 @@ app.use(passport.session());
 passport.use(new LocalStrategy(UserModel.authenticate()));
 passport.serializeUser(UserModel.serializeUser());
 passport.deserializeUser(UserModel.deserializeUser());
+
+// Csrf
+app.use(csrf());
 
 // Web Routes
 app.use('/', WebRoutes)
