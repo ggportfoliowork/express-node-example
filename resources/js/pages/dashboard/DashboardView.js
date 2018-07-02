@@ -21,6 +21,9 @@ class DashboardView extends React.Component {
                      pad='medium'>
                     { moment(Date.now()).format('MM/DD/YY hh:mm') }
                 </Box>
+                <form method="post" action="/logout">
+                    <button type="submit">Logout</button>
+                </form>
             </Split>
         );
     }

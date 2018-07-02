@@ -1,12 +1,22 @@
-var mongoose = require('mongoose');
+import mongoose from 'mongoose'
+import passportLocalMongoose from 'passport-local-mongoose'
 
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
-var UserModelSchema = new Schema({
-    id: Number,
-    username: String
-}, { collection: 'users' });
+let UserModelSchema = new Schema({
+    username: String,
+    password: String,
+    has_viewed_tutorial: Number,
+    created_at: Date,
+    updated_at: Date,
+    deleted_at: Date,
+    created_by: Number,
+    updated_by: Number,
+    deleted_by: Date
+}, { collection: 'users' })
 
-const UserModel = mongoose.model('UserModel', UserModelSchema);
+UserModelSchema.plugin(passportLocalMongoose)
+
+const UserModel = mongoose.model('UserModel', UserModelSchema)
 
 export default UserModel

@@ -1,0 +1,17 @@
+extends ../layout/public
+
+block content
+    .container.centered.text-center
+        h1 Sign-Up
+        br
+        form(role='form', action="/register",method="post", style='max-width: 300px;text-align: center;')
+            .form-group
+                input.form-control(type='text', name="username", placeholder='Enter Username')
+                if typeof errors !== 'undefined'
+                    if errors.name == 'UserExistsError'
+                        .help-block
+                            span !{errors.message}
+            .form-group
+                input.form-control(type='password', name="password", placeholder='Password')
+                input(type='hidden', name='_token', value=_token)
+            button.btn.btn-default(type='submit') Sign Up
