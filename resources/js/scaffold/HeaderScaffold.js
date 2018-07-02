@@ -20,7 +20,7 @@ class HeaderScaffold extends React.Component {
         return (
             <Header float={false}
                     fixed={true}
-                    size='medium'
+                    size='small'
                     splash={false}>
                 <Title>
                     <i className="fal fa-2x fa-paw header-logo"></i> { title }
