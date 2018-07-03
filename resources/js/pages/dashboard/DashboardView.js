@@ -31,24 +31,6 @@ class DashboardView extends React.Component {
                          colorIndex='light-2'>
                         Box 3
                     </Box>
-                    <Box align='center'
-                         pad='medium'
-                         margin='small'
-                         colorIndex='light-2'>
-                        Box 4
-                    </Box>
-                    <Box align='center'
-                         pad='medium'
-                         margin='small'
-                         colorIndex='light-2'>
-                        Box 5
-                    </Box>
-                    <Box align='center'
-                         pad='medium'
-                         margin='small'
-                         colorIndex='light-2'>
-                        Box 6
-                    </Box>
                 </Columns>
             </Section>
         );
