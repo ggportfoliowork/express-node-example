@@ -46,7 +46,11 @@ passport.use(new LocalStrategy(UserModel.authenticate()));
 passport.serializeUser(UserModel.serializeUser());
 passport.deserializeUser(UserModel.deserializeUser());
 
-app.use(csurf({cookie:{key:'XSRF-TOKEN',path:'/'}}))
+const csrfMiddleware = csurf({
+    cookie: true
+})
+
+app.use(csrfMiddleware)
 app.use(function (req, res, next) {
     res.cookie("XSRF-TOKEN", req.csrfToken());
     return next();
