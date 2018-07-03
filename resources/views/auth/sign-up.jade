@@ -13,5 +13,5 @@ block content
                             span !{errors.message}
             .form-group
                 input.form-control(type='password', name="password", placeholder='Password')
-                input(type='hidden', name='_token', value=_token)
+                input(type='hidden', name='_csrf', value=_token)
             button.btn.btn-default(type='submit') Sign Up

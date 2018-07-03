@@ -28,9 +28,9 @@ app.use("/dist", express.static(__dirname + '/dist'));
 // Session, Cookie Config
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser(process.env.APP_KEY));
 app.use(expressSession({
-    secret: 'My super session secret',
+    secret: process.env.APP_KEY,
     cookie: {
         httpOnly: true,
         secure: true
