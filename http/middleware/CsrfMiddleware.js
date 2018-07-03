@@ -6,8 +6,11 @@
  * @constructor
  */
 const CsrfMiddleware = function(req, res, next) {
-    console.log(req.csrfToken())
-    res.locals._token = req.csrfToken();
+    let token = req.csrfToken()
+    res.cookie('XSRF-TOKEN', token)
+    res.cookie('CSRF-TOKEN', token)
+    res.cookie('X-CSRF-Token', token)
+    res.locals._token = token;
     next()
 }
 

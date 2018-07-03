@@ -1,4 +1,4 @@
-import csrf from 'csurf'
+import csurf from 'csurf'
 import express from 'express'
 import passport from 'passport'
 import ApiRoutes from './routes/api'
@@ -6,6 +6,7 @@ import WebRoutes from './routes/web'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import UserModel from './models/UserModel'
+import expressSession from 'express-session'
 
 // Auth Config
 const LocalStrategy = require('passport-local').Strategy;
@@ -28,10 +29,12 @@ app.use("/dist", express.static(__dirname + '/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(require('express-session')({
-    secret: process.env.APP_KEY,
-    resave: false,
-    saveUninitialized: false
+app.use(expressSession({
+    secret: 'My super session secret',
+    cookie: {
+        httpOnly: true,
+        secure: true
+    }
 }));
 
 // Initialize Passport
@@ -43,8 +46,11 @@ passport.use(new LocalStrategy(UserModel.authenticate()));
 passport.serializeUser(UserModel.serializeUser());
 passport.deserializeUser(UserModel.deserializeUser());
 
-// Csrf
-app.use(csrf());
+app.use(csurf({cookie:{key:'XSRF-TOKEN',path:'/'}}))
+app.use(function (req, res, next) {
+    res.cookie("XSRF-TOKEN", req.csrfToken());
+    return next();
+});
 
 // Web Routes
 app.use('/', WebRoutes)

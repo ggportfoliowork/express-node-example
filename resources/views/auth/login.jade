@@ -1,13 +1,27 @@
 extends ../layout/public
 
 block content
-    .container
-        h1 Login
-        br
-        form(role='form', action="/login",method="post", style='max-width: 300px;')
-            .form-group
-                input.form-control(type='text', name="username", placeholder='Enter Username')
-            .form-group
-                input.form-control(type='password', name="password", placeholder='Password')
-                input(type='hidden', name='_token', value=_token)
-            button.btn.btn-default(type='submit') Sign In
+    div.container
+        form(method="POST" action="/login" enctype='multipart/form-data')
+            div(class='w-full max-w-xs')
+                div.bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4
+                    div.mb-4
+                        label.block.text-grey-darker.text-sm.font-bold.mb-2(for="username")
+                            | Username
+
+                        input#username.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-grey-darker.leading-tight(type='text', name="username", placeholder='Username')
+                    div.mb-6
+                        label.block.text-grey-darker.text-sm.font-bold.mb-2(for="password")
+                            | Password
+
+                        input#password.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-grey-darker.mb-3.leading-tight(type='password', name="password", placeholder='Password')
+
+                        input(type='hidden', name='_token', value=_token)
+                    div.flex.items-center.justify-between
+                        button(type='submit', class='bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded') Sign In
+
+                        a.inline-block.align-baseline.font-bold.text-sm.text-blue(class="hover:text-blue-darker", href="#")
+                        | Forgot Password?
+
+                p.text-center.text-grey.text-xs
+                     p &copy; 2018 PawTrackers

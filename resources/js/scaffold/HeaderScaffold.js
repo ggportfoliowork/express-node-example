@@ -43,7 +43,12 @@ class HeaderScaffold extends React.Component {
                             <i className="fal fa-gear sidebar-icon"></i> My Account
                         </Anchor>
                         <Anchor href='#'>
-                            <i className="fal fa-power-off"></i> Sign Out
+                            <form method="post" action="/logout">
+                                <input type="hidden" name="_token" value={document.getElementsByTagName('meta')['csrf_token'].getAttribute('content')} />
+                                <button type="submit">
+                                    <i className="fal fa-power-off"></i> Sign Out
+                                </button>
+                            </form>
                         </Anchor>
                     </Menu>
                 </Box>

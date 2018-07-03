@@ -14,7 +14,6 @@ import AuthMiddleware from '../http/middleware/AuthMiddleware'
 import CsrfMiddleware from '../http/middleware/CsrfMiddleware'
 
 let router = express.Router()
-
 /**
  * Apply CSRF Middleware to all web routes
  */
