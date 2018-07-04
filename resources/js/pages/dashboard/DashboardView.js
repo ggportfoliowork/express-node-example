@@ -9,27 +9,13 @@ class DashboardView extends React.Component {
         return (
             <Section justify='center'
                      align='center'
-                     pad='medium'>
-                <Columns size='small'
-                         masonry={true}
-                         maxCount={3}>
+                     pad='large'>
+                <Columns size='large'>
                     <Box align='center'
                          pad='medium'
                          margin='small'
                          colorIndex='light-2'>
                         Box 1
-                    </Box>
-                    <Box align='center'
-                         pad='medium'
-                         margin='small'
-                         colorIndex='light-2'>
-                        Box 2
-                    </Box>
-                    <Box align='center'
-                         pad='medium'
-                         margin='small'
-                         colorIndex='light-2'>
-                        Box 3
                     </Box>
                 </Columns>
             </Section>

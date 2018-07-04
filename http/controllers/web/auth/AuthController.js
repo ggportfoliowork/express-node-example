@@ -42,11 +42,9 @@ exports.storeRegistration = function(req, res) {
  * @param res
  */
 exports.authenticate = function(req, res) {
-    passport.authenticate('local', {
-        successRedirect : '/',
-        failureRedirect : '/register',
-        failureFlash : true
-    })
+    passport.authenticate('local')(req, res, function () {
+        res.redirect('/');
+    });
 }
 
 /**

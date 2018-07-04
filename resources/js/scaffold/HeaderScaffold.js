@@ -3,14 +3,19 @@ let React = require('react')
 import Box from 'grommet/components/Box'
 import Menu from 'grommet/components/Menu'
 import Title from 'grommet/components/Title'
-import Search from 'grommet/components/Search'
 import Anchor from 'grommet/components/Anchor'
 import Header from 'grommet/components/Header'
 import User from 'grommet/components/icons/base/User'
+import Home from 'grommet/components/icons/base/Home'
+import FingerPrint from 'grommet/components/icons/base/FingerPrint'
 
+
+/**
+ * Header Scaffold
+ */
 class HeaderScaffold extends React.Component {
     render() {
-        let title = 'PawTrackers'
+        let title = ''
         const menuStyle = {
             zIndex: 99999,
         }
@@ -23,32 +28,27 @@ class HeaderScaffold extends React.Component {
                     size='small'
                     splash={false}>
                 <Title>
-                    <i className="fal fa-2x fa-paw header-logo"></i> { title }
+                    <i className="fal fa-2x fa-box header-logo"></i> { title }
                 </Title>
                 <Box flex={true}
                      justify='end'
                      direction='row'
                      responsive={false}>
-                    <Search inline={true}
-                            fill={true}
-                            size='medium'
-                            placeHolder='Search'
-                            dropAlign={{"right": "right"}} />
-                    <Menu icon={<User />}
-                          style={menuStyle}
-                          size="large"
-                          dropAlign={{"right": "right"}}>
-                        <Anchor href='#'
-                                className='active'>
-                            <i className="fal fa-gear sidebar-icon"></i> My Account
+                    <Menu responsive={true}
+                          inline={true}
+                          fill={true}
+                          justify='start'
+                          size='large'
+                          direction='row'
+                          primary={false}>
+                        <Anchor href='#' icon={<Home />}>
+                            Home
                         </Anchor>
-                        <Anchor href='#'>
-                            <form method="post" action="/logout">
-                                <input type="hidden" name="_token" value={document.getElementsByTagName('meta')['csrf_token'].getAttribute('content')} />
-                                <button type="submit">
-                                    <i className="fal fa-power-off"></i> Sign Out
-                                </button>
-                            </form>
+                        <Anchor href='#' icon={<FingerPrint />}>
+                            Schedule
+                        </Anchor>
+                        <Anchor href='#' icon={<User />} align='end'>
+                            Account
                         </Anchor>
                     </Menu>
                 </Box>

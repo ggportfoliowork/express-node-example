@@ -1,3 +1,6 @@
+import Tokens from 'csrf';
+const tokens = new Tokens();
+
 /**
  * CSRF Middleware
  * @param req
@@ -6,9 +9,8 @@
  * @constructor
  */
 const CsrfMiddleware = (req, res, next) => {
-    let token = req.csrfToken()
-    res.cookie('XSRF-TOKEN', token)
-    res.locals._token = token;
+    let secret = tokens.secretSync()
+    res.locals._token = tokens.create(secret);
     next()
 }
 

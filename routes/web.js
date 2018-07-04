@@ -36,10 +36,6 @@ router.get('/register', AuthController.showRegistrationForm)
 
 router.post('/logout', AuthController.logout)
 router.get('/login', AuthController.showLoginForm)
-router.post('/login', passport.authenticate('local', {
-    successRedirect : '/',
-    failureRedirect : '/register',
-    failureFlash : true
-}))
+router.post('/login', AuthController.authenticate)
 
 module.exports = router

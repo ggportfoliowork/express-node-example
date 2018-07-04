@@ -1,6 +1,6 @@
-import csurf from 'csurf'
 import express from 'express'
 import passport from 'passport'
+import flash from 'connect-flash'
 import ApiRoutes from './routes/api'
 import WebRoutes from './routes/web'
 import bodyParser from 'body-parser'
@@ -11,12 +11,16 @@ import expressSession from 'express-session'
 // Auth Config
 const LocalStrategy = require('passport-local').Strategy;
 
+
 // Config & DB
 require('dotenv').config()
 const db = require('./config/database')
 
 // App Initialization
 const app = express()
+
+// MongoStore
+const MongoStore = require('connect-mongo')(expressSession);
 
 // View setup ReactJS
 app.set('view engine', 'jade');
@@ -29,32 +33,29 @@ app.use("/dist", express.static(__dirname + '/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.APP_KEY));
+
 app.use(expressSession({
     secret: process.env.APP_KEY,
-    cookie: {
-        httpOnly: true,
-        secure: true
-    }
+    saveUninitialized: true,
+    resave: true,
+    store: new MongoStore({
+        url: process.env.DB_HOST,
+        collection: 'sessions'
+    })
 }));
 
-// Initialize Passport
+// Passport
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 // Passport Configs
 passport.use(new LocalStrategy(UserModel.authenticate()));
 passport.serializeUser(UserModel.serializeUser());
 passport.deserializeUser(UserModel.deserializeUser());
 
-const csrfMiddleware = csurf({
-    cookie: true
-})
-
-app.use(csrfMiddleware)
-app.use(function (req, res, next) {
-    res.cookie("XSRF-TOKEN", req.csrfToken());
-    return next();
-});
+// Flash Data
+app.use(flash());
 
 // Web Routes
 app.use('/', WebRoutes)
